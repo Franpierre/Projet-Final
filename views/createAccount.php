@@ -1,12 +1,13 @@
 <?php
 include 'header.php';
 include '../models/modelCities.php';
+include '../models/modelUsers.php';
 include '../controllers/regex.php';
-include '../controllers/createAccountController.php'
+include '../controllers/createAccountController.php';
 ?>
   <div class="container mt-5 mb-5">
     <?php if (count($_POST) == 0 || count($formErrors) > 0) { ?>
-      <form action="index.php" method="POST">
+      <form action="createAccount.php" method="POST">
           <h1>Création de compte</h1>
           <hr />
           <div class="form-group row">
@@ -146,7 +147,7 @@ include '../controllers/createAccountController.php'
             </div>                               
         </fieldset>
               <div class="col-lg-4 offset-10">       
-                <input type="submit" class="btn btn-success" value="S'inscrire" />
+                <input type="submit" class="btn btn-success" name="submitForm" value="S'inscrire" />
               </div>
           </div>
       </form>

@@ -7,23 +7,25 @@ $citiesList = $cities->getCitiesList();
 
 //On initialise un tableau d'erreurs vide
 $formErrors = array();
+$users = new users();
+//$usersList = $users->addUser();
 /*
- * On vérifie si le tableau $_POST est vide
- * S'il est vide => le formulaire n'a pas été envoyé
- * S'il a au moins une ligne => le formulaire a été envoyé, on peut commencer les vérifications
- */
-if (count($_POST) > 0) {
+* On vérifie si le tableau $_POST est vide
+* S'il est vide => le formulaire n'a pas été envoyé
+* S'il a au moins une ligne => le formulaire a été envoyé, on peut commencer les vérifications
+*/
+if (isset($_POST['submitForm'])) {
   /*
-   * On vérifie que $_POST['lastName'] n'est pas vide
-   * S'il est vide => on stocke l'erreur dans le tableau $formErrors
-   * S'il n'est pas vide => on vérifie si la saisie utilisateur correspond à la regex
-   */
+  * On vérifie que $_POST['lastName'] n'est pas vide
+  * S'il est vide => on stocke l'erreur dans le tableau $formErrors
+  * S'il n'est pas vide => on vérifie si la saisie utilisateur correspond à la regex
+  */
   if (!empty($_POST['lastName'])) {
     /*
-     * On vérifie si la saisie utilisateur correspond à la regex
-     * Si tout va bien => on stocke dans la variable qui nous servira à afficher
-     * Sinon => on stocke l'erreur dans le tableau $formErrors
-     */
+    * On vérifie si la saisie utilisateur correspond à la regex
+    * Si tout va bien => on stocke dans la variable qui nous servira à afficher
+    * Sinon => on stocke l'erreur dans le tableau $formErrors
+    */
     if (preg_match($regexName, $_POST['lastName'])) {
       //On utilise la fonction strip_tags pour supprimer les éventuelles balises html => on a aucun intérêt à garder une balise html dans ce champs
       $lastName = strip_tags($_POST['lastName']);
@@ -33,7 +35,7 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['lastName'] = 'Merci de renseigner votre nom de famille';
   }
-
+  
   if (!empty($_POST['firstName'])) {
     if (preg_match($regexName, $_POST['firstName'])) {
       $firstName = strip_tags($_POST['firstName']);
@@ -43,7 +45,7 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['firstName'] = 'Merci de renseigner votre prénom';
   }
-
+  
   if (!empty($_POST['birthDate'])) {
     if (preg_match($regexBirthDate, $_POST['birthDate'])) {
       $birthDate = strip_tags($_POST['birthDate']);
@@ -53,9 +55,9 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['birthDate'] = 'Merci de renseigner votre date de naissance';
   }
-
+  
   if (!empty($_POST['password'])) {
-    if (preg_match($regexCountryAndNationnality, $_POST['password'])) {
+    if (preg_match($regexPassword, $_POST['password'])) {
       $password = strip_tags($_POST['password']);
     } else {
       $formErrors['password'] = 'Merci de renseigner un mot de passe valide';
@@ -63,9 +65,9 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['password'] = 'Merci de renseigner un mot de passe';
   }
-
+  
   if (!empty($_POST['passwordConfirmation'])) {
-    if (preg_match($regexCountryAndNationnality, $_POST['passwordConfirmation'])) {
+    if (preg_match($regexPassword, $_POST['passwordConfirmation'])) {
       $passwordConfirmation = strip_tags($_POST['passwordConfirmation']);
     } else {
       $formErrors['passwordConfirmation'] = 'Le mot de passe ne correspond pas';
@@ -73,7 +75,7 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['passwordConfirmation'] = 'Confirmation du mot de passe';
   }
-
+  
   if (!empty($_POST['address'])) {
     if (preg_match($regexAddress, $_POST['address'])) {
       $address = strip_tags($_POST['address']);
@@ -83,7 +85,7 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['address'] = 'Merci de renseigner votre adresse';
   }
-
+  
   if (!empty($_POST['mail'])) {
     if (preg_match($regexMail, $_POST['mail'])) {
       $mail = strip_tags($_POST['mail']);
@@ -93,7 +95,7 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['mail'] = 'Merci de renseigner votre nationalité';
   }
-
+  
   if (!empty($_POST['phoneNumber'])) {
     if (preg_match($regexPhoneNumber, $_POST['phoneNumber'])) {
       $phoneNumber = strip_tags($_POST['phoneNumber']);
@@ -113,7 +115,7 @@ if (count($_POST) > 0) {
     $formErrors['levelSport'] = 'Merci de répondre à cette question';
   }
   if (!empty($_POST['gender'])) {
-    if ($_POST['gender'] === 'oui' || $_POST['gender'] === 'non') {
+    if ($_POST['gender'] === 'Homme' || $_POST['gender'] === 'Femme') {
       $gender = $_POST['gender'];
     } else {
       $formErrors['gender'] = 'Merci de sélectionner une réponse';
@@ -121,4 +123,12 @@ if (count($_POST) > 0) {
   } else {
     $formErrors['gender'] = 'Merci de répondre à cette question';
   }
+
+  if(empty($formErrors)){
+    $users->addUser();
+  }
 }
+var_dump($formErrors);
+var_dump($_POST);
+
+
