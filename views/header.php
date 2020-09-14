@@ -12,18 +12,18 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <!-- Mon CSS -->
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="index.php">SportInShape</a>
+    <a class="navbar-brand" href="../index.php">SportInShape</a>
     <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-        <a class="nav-link" href="connexion.php">Se connecter</a>
-        <a class="nav-link" href="createAccount.php">Créer un compte</a>
+        <a class="nav-link" href="../views/connexion.php">Se connecter</a>
+        <a class="nav-link" href="../views/createAccount.php">Créer un compte</a>
     </div>
     </div>
     </nav>

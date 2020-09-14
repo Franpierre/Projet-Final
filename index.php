@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+include 'views/header.php';
 ?>
   <div class="carousel-inner container">
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -116,5 +116,5 @@ include 'header.php';
   </a>
 </div>
 <?php
-include 'footer.php';
+include 'views/footer.php';
 ?>
